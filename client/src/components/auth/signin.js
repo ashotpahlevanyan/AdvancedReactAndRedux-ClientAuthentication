@@ -1,12 +1,15 @@
 import React,  { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 
 class Signin extends Component {
+	constructor(props) {
+		super(props);
+	}
 	handleFormSubmit({email, password}) {
-		console.log(email, password);
+		//console.log(email, password);
 		// Need to do something to log user in
-		actions.signinUser({ email, password });
+		this.props.signinUser({ email, password });
 	}
 
 	render() {
@@ -16,10 +19,9 @@ class Signin extends Component {
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 				<fieldset className="form-group">
 					<label>Email:</label>
-					<Field
+					<input
 						{...email}
 						className="form-control"
-						component="input"
 					  name="email"
 					  type="text"
 					  placeholder="you@yourdomain.com"
@@ -27,16 +29,15 @@ class Signin extends Component {
 				</fieldset>
 				<fieldset className="form-group">
 					<label>Password:</label>
-					<Field
+					<input
 						{...password}
 						className="form-control"
-						component="input"
 						name="password"
 						type="password"
 						placeholder=""
 					/>
 				</fieldset>
-				<button action="submit" className="btn btn-primary">Sign in</button>
+				<button action="submit" type="submit" className="btn btn-primary">Sign in</button>
 			</form>
 		);
 	}
