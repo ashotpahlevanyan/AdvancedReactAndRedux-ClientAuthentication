@@ -6,7 +6,7 @@ class Header extends Component {
 			<nav className="navbar navbar-light">
 				<ul className="nav navbar-nav">
 					<li className="nav-item">
-						Signin
+						Sign in
 					</li>
 				</ul>
 			</nav>
