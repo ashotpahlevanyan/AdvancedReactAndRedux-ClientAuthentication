@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // DB setup
 
@@ -14,12 +15,14 @@ const mongoose = require('mongoose');
 
 
 mongoose.connect('mongodb://localhost/auth');
-// App setup
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+// App setup
+
 app.use(morgan('combined')); // logging fremework
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 // Server setup
