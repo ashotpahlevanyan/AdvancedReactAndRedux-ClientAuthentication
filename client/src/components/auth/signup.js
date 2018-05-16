@@ -4,10 +4,41 @@ import * as actions from '../../actions';
 
 class Signup extends Component {
 	render () {
+		const { handleSubmit, fields : { email, password, passwordConfirm }} = this.props;
 		return (
-			<div>Signup</div>
+			<form>
+				<fieldset className="form-group">
+					<label>Email:</label>
+					<input type="text" className="form-control" {...email} />
+				</fieldset>
+				<fieldset className="form-group">
+					<label>Password:</label>
+					<input type="password" className="form-control" {...password} />
+					{password.touched && password.error && <div className="error">{password.error}</div>}
+					{/*if first is true, and second is true and 3d is true, then return the third*/}
+				</fieldset>
+				<fieldset className="form-group">
+					<label>Confirm Password:</label>
+					<input type="password" className="form-control" {...passwordConfirm} />
+				</fieldset>
+				<button action="submit" className="btn btn-primary">Sign Up!</button>
+			</form>
 		);
 	}
 }
 
-export default Signup;
+function validate(formProps) {
+	const errors = {};
+
+	if(formProps.password !== formProps.passwordConfirm) {
+		errors.password = "Passwords must match";
+	}
+
+	return errors;
+}
+
+export default reduxForm({
+	form: 'signup',
+	fields: ['email', 'password', 'passwordConfirm'],
+	validate
+})(Signup);
