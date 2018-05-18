@@ -70,7 +70,6 @@ export function fetchMessage() {
 	}
 }
 
-
 // with redux promimse it is easier to read, but a matter of choice
 // export function fetchmessage() {
 // 	const request = axios.get(ROOT_URL, {
