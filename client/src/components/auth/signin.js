@@ -7,7 +7,6 @@ class Signin extends Component {
 		super(props);
 	}
 	handleFormSubmit({email, password}) {
-		//console.log(email, password);
 		// Need to do something to log user in
 		this.props.signinUser({ email, password });
 	}
